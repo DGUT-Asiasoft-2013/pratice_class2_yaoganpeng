@@ -29,6 +29,12 @@
         <activity
             android:name=".RegisterActivity" >
         </activity>
+        <activity
+            android:name=".HelloWorldActivity" >
+        </activity>
+        <activity
+            android:name=".PasswordRecoverActivity" >
+        </activity>
     </application>
 
 </manifest>
