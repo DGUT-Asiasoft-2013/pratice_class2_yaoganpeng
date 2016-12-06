@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.EditText;
 
 public class PasswordRecoverStep1Fragment extends Fragment {
 	SimpleTextInputCellFragment fragEmail;
 	View view;
+//	EditText edit = (EditText)getFragmentManager().findFragmentById(R.id.edit);
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,15 +33,16 @@ public class PasswordRecoverStep1Fragment extends Fragment {
 			});	
 		}
 		
+		
 		return view;
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		
 		fragEmail.setLabelText("◊¢≤·’À∫≈");
 		fragEmail.setHintText("◊¢≤·” œ‰µÿ÷∑");
+		
 	}
 	
 	public static interface OnGoNextListener{
@@ -52,6 +56,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
 	}
 	
 	void goNext(){
+//		if()
 		if(onGoNextListener!=null){
 			onGoNextListener.onGoNext();
 		}
