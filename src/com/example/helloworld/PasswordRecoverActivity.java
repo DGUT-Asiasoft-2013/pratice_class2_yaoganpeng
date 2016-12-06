@@ -15,20 +15,25 @@ public class PasswordRecoverActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_password_recover);
- 		step1.setOnGoNextListener(new OnGoNextListener() {
+		step1.setOnGoNextListener(new OnGoNextListener() {
 			@Override
 			public void onGoNext() {
 				goStep2();
 			}
 		});
- 		
- 		getFragmentManager().beginTransaction().replace(R.id.container, step1).commit();
+
+		getFragmentManager().beginTransaction().replace(R.id.container, step1).commit();
 	}
-	
+
 	void goStep2(){
-		
+
 		getFragmentManager()
-		.beginTransaction()		
+		.beginTransaction()	
+		.setCustomAnimations(
+				R.animator.slide_in_right,
+				R.animator.slide_out_left,
+				R.animator.slide_in_left,
+				R.animator.slide_out_right)
 		.replace(R.id.container, step2)
 		.addToBackStack(null)
 		.commit();
