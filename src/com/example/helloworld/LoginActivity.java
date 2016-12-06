@@ -60,7 +60,7 @@ public class LoginActivity extends Activity {
 		startActivity(itnt);
 	}
 	void goRecoverPassword() {
-		Intent itnt = new Intent(this,PasswordRecoverStep1Fragment.class);
+		Intent itnt = new Intent(this,PasswordRecoverActivity.class);
 		startActivity(itnt);
 	}
 }
