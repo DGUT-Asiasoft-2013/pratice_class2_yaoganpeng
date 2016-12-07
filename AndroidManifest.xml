@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".PasswordRecoverActivity" >
         </activity>
+        <activity android:name=".FeedContentActivity" >
+        </activity>
        
     </application>
 

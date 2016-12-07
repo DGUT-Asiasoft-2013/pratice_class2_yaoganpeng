@@ -8,19 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class BootActivity extends Activity {
-
+	//ÆðÊ¼Ò³
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_boot);
-		
-		
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
+
 		Handler handler = new Handler();
 		handler.postDelayed(new Runnable(){
 			public void run() {
@@ -28,7 +26,7 @@ public class BootActivity extends Activity {
 			}
 		},1000);
 	}
-	 void startLoginActivity() {
+	void startLoginActivity() {
 		Intent itnt = new Intent(this,LoginActivity.class);
 		startActivity(itnt);
 		finish();
