@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/FrameLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/TextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="LOGIN_TO_HELLO"
+        android:padding="16dp"
+        android:text="LOGIN TO HELLO"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -36,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:padding="2dp"
-        android:text="忘记密码"
+        android:text="忘记密码？"
         android:textColor="#00f" />
 
     <LinearLayout
@@ -46,16 +44,17 @@
 
         <Button
             android:id="@+id/btn_register"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:text="注册" />
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="0.5"
             android:text="登陆" />
-
     </LinearLayout>
 
 </LinearLayout>

@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="19" />
+    <uses-permission 
+		android:name="android.permission.INTERNET"/>    
 
     <application
         android:allowBackup="true"
@@ -33,6 +35,8 @@
         </activity>
         <activity android:name=".FeedContentActivity" >
         </activity>
+        <activity android:name=".NewContentActivity" >
+</activity>
        
     </application>
 

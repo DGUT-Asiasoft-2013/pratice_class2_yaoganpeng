@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -22,8 +21,8 @@ public class FeedListFragment extends Fragment {
 
 	View view;
 	ListView listView;
-	String data[];
-
+	
+	String[] data;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,20 +31,22 @@ public class FeedListFragment extends Fragment {
 			
 			listView = (ListView) view.findViewById(R.id.list);
 			listView.setAdapter(listAdapter);
+			
 			Random rand = new Random();
-			data = new String[10+Math.abs((rand.nextInt()%20))];
-			for(int i = 0;i<data.length;i++){
-				data[i]="This is row "+rand.nextInt();
+			data = new String[10+Math.abs(rand.nextInt()%20)];
+			
+			for(int i=0; i<data.length; i++){
+				data[i] = "THIS ROW IS "+rand.nextInt();
 			}
-		}
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			
+			listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				onClickListener(position);
-				
-			}
-		});
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+					onItemClicked(position);
+				}
+			});
+		}
 
 		return view;
 	}
@@ -84,14 +85,17 @@ public class FeedListFragment extends Fragment {
 		
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
-			return data==null? 0 : data.length;
+			return data==null ? 0 : data.length;
 		}
 	};
-	void onClickListener(int position){
-		String text = new String(data[position]);
+	
+	void onItemClicked(int position){
+		String text = data[position];
+		
 		Intent itnt = new Intent(getActivity(), FeedContentActivity.class);
 		itnt.putExtra("text", text);
+		
+		
 		startActivity(itnt);
 	}
 }
