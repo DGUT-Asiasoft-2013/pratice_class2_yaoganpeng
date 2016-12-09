@@ -32,6 +32,13 @@
                 android:layout_height="wrap_content"
                 class="com.example.helloworld.fragments.inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
+            
+            <fragment
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="com.example.helloworld.fragments.inputcells.SimpleTextInputCellFragment"
+                tools:layout="@layout/fragment_inputcell_simpletext" />
 
             <fragment
                 android:id="@+id/input_password"
