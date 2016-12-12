@@ -48,35 +48,33 @@ public class BootActivity extends Activity {
 
 			@Override
 			public void onResponse(Call arg0, final Response arg1) throws IOException {
-				BootActivity.this.runOnUiThread(new  Runnable() {
+				BootActivity.this.runOnUiThread(new Runnable() {
+
+					@Override
 					public void run() {
-						try {
-							Toast.makeText(getApplicationContext(), arg1.body().string(),Toast.LENGTH_SHORT).show();
-						} catch (IOException e) {
+						try{
+							Toast.makeText(BootActivity.this, arg1.body().string(), Toast.LENGTH_SHORT).show();
+						}catch (Exception e) {
 							e.printStackTrace();
 						}
 						startLoginActivity();
 					}
 				});
 			}
-
-
 				@Override
 				public void onFailure(Call arg0, final IOException arg1) {
-					Toast.makeText(getApplicationContext(), arg1.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
-
+					BootActivity.this.runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							Toast.makeText(BootActivity.this, arg1.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+						}
+					});
 				}
-			});
-
-
-
-		}
-
-
-
 		void startLoginActivity() {
-			Intent itnt = new Intent(this,LoginActivity.class);
+			Intent itnt = new Intent(BootActivity.this,LoginActivity.class);
 			startActivity(itnt);
 			finish();
 		}
+		});
 	}
+}

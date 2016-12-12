@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>libs/okhttp-urlconnection-3.4.1.jar</name>
+			<type>1</type>
+			<location>E:/okhttp-urlconnection-3.4.1.jar</location>
+		</link>
+	</linkedResources>
 </projectDescription>
