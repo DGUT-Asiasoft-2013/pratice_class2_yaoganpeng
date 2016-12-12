@@ -93,9 +93,9 @@ public class PasswordRecoverStep2Fragment extends Fragment {
 				}
 		} else {
 			new AlertDialog.Builder(getActivity())
-			.setTitle("失败RU啊")
+			.setTitle("失败了")
 			.setMessage("两次密码输入不一致")
-			.setPositiveButton("Rua!",null)
+			.setPositiveButton("确认",null)
 			.show();
 		}
 	   

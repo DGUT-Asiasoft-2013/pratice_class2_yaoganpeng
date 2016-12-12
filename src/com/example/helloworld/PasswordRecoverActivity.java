@@ -91,20 +91,22 @@ public class PasswordRecoverActivity extends Activity {
 		getFragmentManager()
 		.beginTransaction()
 		.replace(R.id.container, step1Fragment)
-		.commit();//恩恩
+		.commit();
 	}
 	
 	
 	
 	 void gorepassword() {
-		 
+		 OkHttpClient client =Server.getSharedClient();
+		 String password = MD5.getMD5(step2Fragment.getText());
 		 MultipartBody.Builder requestBodyBulider=new MultipartBody.Builder()
 					.setType(MultipartBody.FORM)
 					.addFormDataPart("email",step1Fragment.getText())
-					.addFormDataPart("passwordHash",step2Fragment.getText());
+					.addFormDataPart("passwordHash",password);
 		 
-		 OkHttpClient client =Server.getSharedClient();
-		 Request request = Server.requestBuilderWithApi("repassword")
+		 
+		 
+		 Request request = Server.requestBuilderWithApi("passwordrecover")
 					.method("post", null)
 					.post(requestBodyBulider.build())
 					.build();
@@ -145,9 +147,9 @@ public class PasswordRecoverActivity extends Activity {
 
 	void onFailure(Call arg0, IOException arg1) {
 		new AlertDialog.Builder(PasswordRecoverActivity.this)
-		.setTitle("失败RU啊")
+		.setTitle("失败了")
 		.setMessage(arg1.getLocalizedMessage())
-		.setPositiveButton("Rua!",null)
+		.setPositiveButton("确认",null)
 		.show();
 		
 	}
@@ -157,7 +159,7 @@ public class PasswordRecoverActivity extends Activity {
 	void onResponse(Call arg0,String string) {
 		 new AlertDialog.Builder(PasswordRecoverActivity.this)
 			.setMessage(string+"修改密码成功")
-			.setPositiveButton("Rua!",null)
+			.setPositiveButton("确认",null)
 			.show();		
 	}
 
