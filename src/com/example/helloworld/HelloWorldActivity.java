@@ -36,9 +36,9 @@ public class HelloWorldActivity extends Activity {
 				changeContentFragment(index);
 			}
 		});
-		
+
 		tabbar.setOnNewClickedListener(new OnNewClickedListener() {
-			
+
 			@Override
 			public void onNewClicked() {
 				bringUpEditor();
@@ -49,8 +49,9 @@ public class HelloWorldActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-
-		tabbar.setSelectedItem(0);
+		if(tabbar.getSelectedIndex()<0){
+			tabbar.setSelectedItem(0);	
+		}
 	}
 
 	void changeContentFragment(int index){
@@ -72,7 +73,7 @@ public class HelloWorldActivity extends Activity {
 		.replace(R.id.content, newFrag)
 		.commit();
 	}
-	
+
 	void bringUpEditor(){
 		Intent itnt = new Intent(this, NewContentActivity.class);
 		startActivity(itnt);

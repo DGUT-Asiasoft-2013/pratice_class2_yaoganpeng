@@ -5,10 +5,11 @@ import java.io.IOException;
 import com.example.helloworld.R;
 import com.example.helloworld.api.Server;
 import com.example.helloworld.entity.User;
+import com.example.helloworld.fragments.widgets.AvatarView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import android.R.color;
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +27,7 @@ public class MyProfileFragment extends Fragment {
 	View view;
 	TextView textView;
 	ProgressBar progress;
-//	AvatarView avatar;
+	AvatarView avatar;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class MyProfileFragment extends Fragment {
 			view=inflater.inflate(R.layout.fragment_page_my_profile, null);
 			textView =(TextView)view.findViewById(R.id.text);
 			progress= (ProgressBar)view.findViewById(R.id.progress);
+			avatar = (AvatarView)view.findViewById(R.id.avatar);
 		}
 		return view;
 	}
@@ -96,7 +98,9 @@ public class MyProfileFragment extends Fragment {
 		textView.setVisibility(View.VISIBLE);
 		textView.setTextColor(Color.BLACK);
 		textView.setText("Hello,"+user.getName());
-
+		avatar.load(user);
+		
+		
 	}
 	protected void onFailuer(Call arg0, Exception ex) {
 		progress.setVisibility(View.GONE);

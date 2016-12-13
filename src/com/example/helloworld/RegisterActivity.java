@@ -120,12 +120,8 @@ public class RegisterActivity extends Activity {
 		
 		if(fragInputAvatar.getPngData()!=null){
 			requestBodyBuilder
-			.addFormDataPart(
-					"avatar",
-					"avatar",
-					RequestBody
-					.create(MediaType.parse("image/png"),
-							fragInputAvatar.getPngData()));
+			.addFormDataPart("avatar","avatar",RequestBody
+					.create(MediaType.parse("image/png"),fragInputAvatar.getPngData()));
 		}
 
 		Request request = Server.requestBuilderWithApi("register")
@@ -174,7 +170,7 @@ public class RegisterActivity extends Activity {
 	void onResponse(Call arg0, String responseBody){
 		new AlertDialog.Builder(this)
 		.setTitle("×¢²á³É¹¦")
-		.setMessage(responseBody)
+//		.setMessage(responseBody)
 		.setPositiveButton("ºÃ", new DialogInterface.OnClickListener() {
 			
 			@Override
