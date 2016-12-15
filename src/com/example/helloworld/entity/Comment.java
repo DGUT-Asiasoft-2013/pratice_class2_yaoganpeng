@@ -6,21 +6,29 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Article implements Serializable{
-	Integer id;
+public class Comment implements Serializable{
+	Integer Id;
+	User author;
+	String text;
 	Date createDate;
 	Date editDate;
-
-	String title;
-	String text;
-	
-	User author;
-	
 	public Integer getId() {
-		return id;
+		return Id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		Id = id;
+	}
+	public User getAuthor() {
+		return author;
+	}
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
 	}
 	public Date getCreateDate() {
 		return createDate;
@@ -34,22 +42,6 @@ public class Article implements Serializable{
 	public void setEditDate(Date editDate) {
 		this.editDate = editDate;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public User getAuthor() {
-		return author;
-	}
-	public void setAuthor(User author) {
-		this.author = author;
-	}
+	
+	
 }

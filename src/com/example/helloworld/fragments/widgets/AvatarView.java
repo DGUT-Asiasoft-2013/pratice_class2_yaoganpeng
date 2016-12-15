@@ -17,6 +17,7 @@ import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -68,7 +69,7 @@ public class AvatarView extends View {
 	
 	public void load(String url){
 		OkHttpClient client = Server.getSharedClient();
-		
+		Log.d("y", url);
 		Request request = new Request.Builder()
 				.url(url)
 				.method("get", null)

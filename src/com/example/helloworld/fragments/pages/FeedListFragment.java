@@ -2,8 +2,6 @@ package com.example.helloworld.fragments.pages;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import com.example.helloworld.FeedContentActivity;
 import com.example.helloworld.R;
@@ -13,7 +11,6 @@ import com.example.helloworld.entity.Page;
 import com.example.helloworld.fragments.widgets.AvatarView;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.ReferenceType;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -26,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import okhttp3.Call;
@@ -99,8 +95,8 @@ public class FeedListFragment extends Fragment {
 
 			textContent.setText(article.getText());
 			textTitle.setText(article.getTitle());
-			textAuthorName.setText(article.getAuthorName());
-			avatar.load(Server.serverAddress + article.getAuthorAvatar());
+			textAuthorName.setText(article.getAuthor().getName());
+			avatar.load(article.getAuthor());
 			
 			String dateStr = DateFormat.format("yyyy-MM-dd hh:mm", article.getCreateDate()).toString();
 			textDate.setText(dateStr);
@@ -127,10 +123,10 @@ public class FeedListFragment extends Fragment {
 	};
 
 	void onItemClicked(int position){
-		String text = data.get(position).getText();
+		Article article = data.get(position);
 
 		Intent itnt = new Intent(getActivity(), FeedContentActivity.class);
-		itnt.putExtra("text", text);
+		itnt.putExtra("data", article);
 
 		startActivity(itnt);
 	}
@@ -150,13 +146,14 @@ public class FeedListFragment extends Fragment {
 			@Override
 			public void onResponse(Call arg0, Response arg1) throws IOException {
 				try{					
-					Page<Article> data = new ObjectMapper()
+					final Page<Article> data = new ObjectMapper()
 							.readValue(arg1.body().string(),
 									new TypeReference<Page<Article>>(){});
-					FeedListFragment.this.page = data.getNumber();
-					FeedListFragment.this.data = data.getContent();
+					
 					getActivity().runOnUiThread(new Runnable() {
 						public void run() {
+							FeedListFragment.this.page = data.getNumber();
+							FeedListFragment.this.data = data.getContent();
 							listAdapter.notifyDataSetInvalidated();
 						}
 					});
@@ -200,17 +197,18 @@ public class FeedListFragment extends Fragment {
 				});
 				
 				try{
-					Page<Article> feeds = new ObjectMapper().readValue(arg1.body().string(), new TypeReference<Page<Article>>() {});
+					final Page<Article> feeds = new ObjectMapper().readValue(arg1.body().string(), new TypeReference<Page<Article>>() {});
 					if(feeds.getNumber()>page){
-						if(data==null){
-							data = feeds.getContent();
-						}else{
-							data.addAll(feeds.getContent());
-						}
-						page = feeds.getNumber();
 						
 						getActivity().runOnUiThread(new Runnable() {
 							public void run() {
+								if(data==null){
+									data = feeds.getContent();
+								}else{
+									data.addAll(feeds.getContent());
+								}
+								page = feeds.getNumber();
+								
 								listAdapter.notifyDataSetChanged();
 							}
 						});
